@@ -2,7 +2,7 @@
   <p>Search User by ID</p>
   <input type="number" placeholder="Введіть ID користувача" max="10" name="inputId" [(ngModel)]="user.id">
   <button *ngIf="user.id>=1">Пошук користувача</button>
-  <button *ngIf="user.id>=1" (click)="findUserPost(user.id)">Пошук постів користувача</button>
+  <button *ngIf="user.id>=1" (click)="findPostOfUser(user.id)">Пошук постів користувача</button>
   <br>
   <div>
     <br>User ID - {{user.id}}
@@ -10,7 +10,7 @@
     <br>Email - {{user.email}}
   </div>
 
-  <div *ngFor="let uPost of userPost">
+  <div *ngFor="let uPost of PostOfUser">
     Post ID {{uPost.id}} - {{uPost.title}}
   </div>
   <hr>
@@ -40,24 +40,13 @@
     <option value="5">5</option>
   </select>
   <button *ngIf="userInfo.id>=1">Get Name</button>
-</form>
 
-<form #aboutUser="ngForm" (ngSubmit)="findUserPost(userInfo.id)">
+  <button [hidden]="userForm.invalid" (click)="findUserPost(userInfo.id)">check posts</button>
   <br>{{userInfo.id}}
   <br>{{userInfo.name}}
   <br>{{userInfo.email}}
-  <button [hidden]="userForm.invalid" (click)="userPost">check posts</button>
   <div *ngFor="let uPost of userPost">
-    Post ID {{uPost.id}} - {{uPost.title}}
+    Post ID - {{uPost.id}} - Title - {{uPost.title}}
   </div>
   <hr>
 </form>
-
-
-
-
-<!--<form #PostForm="ngForm" (ngSubmit)="findPostById(PostForm)">-->
-<!--  <input type="number" name="InputPostId" [(ngModel)]="post.id">-->
-<!--  <button>find</button>-->
-<!--  <button (click)="findUserPost(post.id)">user post</button>-->
-<!--</form>-->
