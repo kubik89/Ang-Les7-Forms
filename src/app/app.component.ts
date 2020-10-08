@@ -13,8 +13,8 @@ import {CommentsService} from './services/comments.service';
 export class AppComponent {
   user: any = {inputId: 0};
   post: any = {InputPostId: 0};
-  userPost: any = {myPostbyId: 0};
-  PostOfUser: any = {myPostbyId1: 0};
+  userPost: [any] = [{myPostbyId: 0}];
+  PostOfUser: [any] = [{myPostbyId1: 0}];
   userInfo: any = {userId: 0};
   myPostbyId: any = {myPostbyId: 0};
   idPost: any = {postId: 0};
