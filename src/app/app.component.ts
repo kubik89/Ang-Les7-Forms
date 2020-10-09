@@ -67,7 +67,6 @@ export class AppComponent {
   }
 
   getCommentByPostId(idPost: number): void {
-    console.log('отримую пости.... ');
     this.commentsService.getCommentByPostId(idPost).subscribe(value => {
       this.commByPostId = value;
     });
