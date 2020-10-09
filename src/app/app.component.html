@@ -22,12 +22,16 @@
   <input type="number" placeholder="Введіть ID поста" name="postId" [(ngModel)]="idPost.id">
   <button (click)="getPost(idPost.id)">Post by ID</button>
   <button>Отримати пост по ID</button>
+  <button (click)="getCommentByPostId(idPost.id)">Отримати коментарі по пост ID</button>
   <div>
     <p>ID - {{idPost.id}}</p>
     <p>Title - {{idPost.title}}</p>
     <p>Body - {{idPost.body}}</p>
   </div>
   <hr>
+  <div *ngFor="let comment of commByPostId">
+    {{comment.postId}} - {{comment.id}} - {{comment.name}}
+  </div>
 
 </form>
 
@@ -50,3 +54,5 @@
   </div>
   <hr>
 </form>
+
+
