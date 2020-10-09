@@ -13,14 +13,14 @@ import {UserId} from './model/user1';
 })
 
 export class AppComponent {
-  user: UserId = {};
+  user: UserId = {id: 0};
   // user: any = {inputId1: 0};
   PostOfUser: Post[] = [];
   // post: any = {InputPostId: 0};
-  // userPost: Post[];
-  // userInfo: any = {userId: 0};
-  // myPostbyId: any = {myPostbyId: 0};
-  idPost: Post = {};
+  userPost: Post[];
+  userInfo: UserId = {id: 0};
+  myPostbyId: Post;
+  idPost: Post = {id: 0};
 
   constructor(private userService: UserService,
               private postService: PostService,
@@ -48,26 +48,27 @@ export class AppComponent {
   //   });
   // }
 //
-//   findUserPost(someNubmer: string): void {
-//     this.postService.getPostbyUserId(someNubmer).subscribe(value => {
-//       console.log(value);
-//       this.userPost = value;
-//     });
-//   }
-//
-//
-//   findUser(userForm: NgForm): void {
-//     this.userService.getuserById(userForm.controls.userId.value).subscribe(value => {
-//       this.userInfo = value;
-//     });
-//   }
-//
-//   getPost(id: string): void {
-//     this.postService.getPostbyId(id).subscribe(value => {
-//       this.myPostbyId = value;
-//     });
-//   }
-//
+  findUserPost(someNubmer: number): void {
+    this.postService.getPostbyUserId(someNubmer).subscribe(value => {
+      console.log(value);
+      this.userPost = value;
+    });
+  }
+
+
+  findUser(userForm: NgForm): void {
+    this.userService.getuserById(userForm.controls.userId.value).subscribe(value => {
+      console.log(value);
+      this.userInfo = value;
+    });
+  }
+
+  getPost(id: number): void {
+    this.postService.getPostbyId(id).subscribe(value => {
+      this.myPostbyId = value;
+    });
+  }
+
   findPostByID(myPostIDForm: NgForm): void {
     this.postService.getPostbyId(myPostIDForm.controls.postId.value).subscribe(value => {
       // console.log(myPostIDForm.controls.postId.value);
