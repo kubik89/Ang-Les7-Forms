@@ -13,14 +13,14 @@ import {UserId} from './model/user1';
 })
 
 export class AppComponent {
-  user: UserId = {id: 0, name: 'sdsds', email: 'ffffffffff'};
+  user: UserId = {};
   // user: any = {inputId1: 0};
+  PostOfUser: Post[] = [];
   // post: any = {InputPostId: 0};
   // userPost: Post[];
-  // PostOfUser: any[] = [{myPostbyId1: 0}];
   // userInfo: any = {userId: 0};
   // myPostbyId: any = {myPostbyId: 0};
-  // idPost: any = {postId: 0};
+  idPost: Post = {};
 
   constructor(private userService: UserService,
               private postService: PostService,
@@ -28,7 +28,7 @@ export class AppComponent {
   }
 
   searchUser(form: NgForm): void {
-      if (form.controls.inputId.value >= 1) {
+    if (form.controls.inputId.value >= 1) {
       this.userService.getuserById(form.controls.inputId.value).subscribe(value => {
         console.log(value);
         this.user = value;
@@ -36,11 +36,17 @@ export class AppComponent {
     }
   }
 
-//   findPostById(PostForm: NgForm): void {
-//     this.postService.getPostbyId(PostForm.controls.InputPostId.value).subscribe(idPost => {
-//       this.post = idPost;
-//     });
-//   }
+  findPostOfUser(someNubmer: number): void {
+    this.postService.getPostbyUserId(someNubmer).subscribe(value => {
+      this.PostOfUser = value;
+    });
+  }
+
+  // findPostById(PostForm: NgForm): void {
+  //   this.postService.getPostbyId(PostForm.controls.InputPostId.value).subscribe(idPost => {
+  //     this.post = idPost;
+  //   });
+  // }
 //
 //   findUserPost(someNubmer: string): void {
 //     this.postService.getPostbyUserId(someNubmer).subscribe(value => {
@@ -49,11 +55,6 @@ export class AppComponent {
 //     });
 //   }
 //
-//   findPostOfUser(someNubmer: string): void {
-//     this.postService.getPostbyUserId(someNubmer).subscribe(value => {
-//       this.PostOfUser = value;
-//     });
-//   }
 //
 //   findUser(userForm: NgForm): void {
 //     this.userService.getuserById(userForm.controls.userId.value).subscribe(value => {
@@ -67,9 +68,10 @@ export class AppComponent {
 //     });
 //   }
 //
-//   findPostByID(myPostIDForm: NgForm): void {
-//     this.postService.getPostbyId(myPostIDForm.controls.postId.value).subscribe(value => {
-//       this.idPost = value;
-//     });
-//   }
+  findPostByID(myPostIDForm: NgForm): void {
+    this.postService.getPostbyId(myPostIDForm.controls.postId.value).subscribe(value => {
+      // console.log(myPostIDForm.controls.postId.value);
+      this.idPost = value;
+    });
+  }
 }

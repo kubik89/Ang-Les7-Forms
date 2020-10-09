@@ -9,11 +9,10 @@ import {Post} from '../model/post-model';
 export class PostService {
 
   constructor(private http: HttpClient) { }
-  getPostbyId(postId: string): Observable<Post[]> {
-    // console.log();
-    return this.http.get<Post[]>(`https://jsonplaceholder.typicode.com/posts/${postId}`);
+  getPostbyId(postId: number): Observable<Post> {
+    return this.http.get<Post>(`https://jsonplaceholder.typicode.com/posts/${postId}`);
   }
-  getPostbyUserId(idUser: string): Observable<Post[]> {
+  getPostbyUserId(idUser: number): Observable<Post[]> {
     return this.http.get<Post[]>(`https://jsonplaceholder.typicode.com/posts/?userId=${idUser}`);
   }
 }
